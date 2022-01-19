@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Initial Navy Pages */
+.initial-main-container{
+    height: 1000px;
+    background-color:pink;
+}
+.initial-main-right{
+    height: 800px;
+    background-color: green;
+}
+.initial-navbar{
+    height: 100px;
+    background-color: black;
+}
+.initial-body{
+    height: 400px;
+    background-color: lightblue;
+}
