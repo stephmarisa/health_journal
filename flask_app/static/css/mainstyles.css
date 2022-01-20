@@ -2,21 +2,44 @@
     margin: 0px;
     padding: 0px;
 }
+/* OVERALL STYLE ELEMENTS */
+body{
+    letter-spacing: .12rem;
+}
+a{
+    text-decoration: none;
+}
+.button-1{
+    padding:15px 35px 15px 35px;
+    border-radius: 25px;
+    border: none;
+    letter-spacing: .12rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight:medium;
+}
+.text-style-2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+}
 
-/* Initial Navy Pages */
-.initial-main-container{
-    height: 1000px;
-    background-color:pink;
+/*   Navbar   */
+.navbar{
+    padding: 15px 100px 15px 100px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.initial-main-right{
-    height: 800px;
-    background-color: green;
+.nav-left{
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 22px;
+    font-weight: lighter;
+    padding:10px;
 }
-.initial-navbar{
-    height: 100px;
-    background-color: black;
+.nav-right{
+    display:flex;
+    justify-content: space-between;
+    font-size: 13px;
 }
-.initial-body{
-    height: 400px;
-    background-color: lightblue;
+.nav-right a{
+    padding-left: 150px;
 }

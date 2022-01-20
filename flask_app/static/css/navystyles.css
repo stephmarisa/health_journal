@@ -1,0 +1,39 @@
+
+/* Initial Navy Pages */
+.initial-main-container{
+    color: white;
+    height: 1000px;
+    background-color:gray;
+}
+.initial-main-container a{
+    color:white;
+}
+.initial-main-right{
+    height: 800px;
+    border: 2px solid black;
+}
+.initial-navbar{
+    border: 2px solid black;
+}
+.initial-body{
+    height: 600px;
+    border: 2px solid black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.initial-body-text{
+    font-family: 'Comfortaa', sans-serif;
+    text-align: center;
+    font-size: 24px;
+    font-weight: lighter;
+    line-height: 2;
+}
+.initial-body-buttons{
+    margin: 50px;
+    display:flex;
+    justify-content: center;
+}
+.initial-body-buttons input{
+    margin: 0px 20px 0px 20px;
+}
