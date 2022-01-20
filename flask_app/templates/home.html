@@ -23,7 +23,7 @@
                 </div>
                 <div class="nav-right text-style-2">
                     <a href="">OVERVIEW</a>
-                    <a href="">LOGIN</a>
+                    <a href="/login">LOGIN</a>
                 </div>
             </div>
             <div class="initial-body">
@@ -33,8 +33,15 @@
                         <p>take notes, & track health trends</p> 
                     </div>
                     <div class="initial-body-buttons">
-                        <input class = "button-1" type="button" value="SIGN UP">
-                        <input class = "button-1" type="button" value="LOGIN">
+                        <!-- <form action="/buy/painting/this_painting.id" method = "POST">
+                            <input class = "button-1 type="submit" value = "SIGN UP">
+                        </form> -->
+                        <form action="/register" method = "GET">
+                            <input class = "button-1" type="submit" value = "SIGN UP">
+                        </form>
+                        <form action="/login" method = "GET">
+                            <input class = "button-1" type="submit" value = "LOGIN">
+                        </form>
                     </div>
                 </div>
             </div>

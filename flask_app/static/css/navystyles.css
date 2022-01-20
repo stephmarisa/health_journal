@@ -22,6 +22,9 @@
     justify-content: center;
     align-items: center;
 }
+.initial-body-head{
+    padding-bottom: 20px;
+}
 .initial-body-text{
     font-family: 'Comfortaa', sans-serif;
     text-align: center;
@@ -34,6 +37,25 @@
     display:flex;
     justify-content: center;
 }
-.initial-body-buttons input{
-    margin: 0px 20px 0px 20px;
+.initial-body-buttons form{
+    margin: 0px 30px 0px 30px;
+}
+
+/* Form */
+input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: gray;
+}
+input[name = "confirm_password"], input[name = "password"]{
+    margin-bottom: 15px;
+}
+input[type=submit]{
+    display: block;
+    margin: 0 auto;
 }

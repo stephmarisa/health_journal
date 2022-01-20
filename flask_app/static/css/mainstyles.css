@@ -17,7 +17,8 @@ a{
     font-family: 'Roboto', sans-serif;
     font-weight:medium;
 }
-.text-style-2 {
+
+.text-style-2, form{
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
 }
