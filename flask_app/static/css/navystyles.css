@@ -3,21 +3,19 @@
 .initial-main-container{
     color: white;
     height: 1000px;
-    background-color:gray;
+    background-color:#374056;
 }
 .initial-main-container a{
     color:white;
 }
 .initial-main-right{
     height: 800px;
-    border: 2px solid black;
 }
-.initial-navbar{
+/* .initial-navbar{
     border: 2px solid black;
-}
+} */
 .initial-body{
     height: 600px;
-    border: 2px solid black;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +48,7 @@ input[type=text], input[type=password], select {
     border: 1px solid white;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: gray;
+    background-color: #374056;
 }
 input[name = "confirm_password"], input[name = "password"]{
     margin-bottom: 15px;

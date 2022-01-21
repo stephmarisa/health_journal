@@ -3,6 +3,10 @@
     padding: 0px;
 }
 /* OVERALL STYLE ELEMENTS */
+/* main navy color: #374056 */
+/* main beige color: #FCF7F0
+    beige lighter: #FFFDFA */
+
 body{
     letter-spacing: .12rem;
 }
@@ -13,14 +17,28 @@ a{
     padding:15px 35px 15px 35px;
     border-radius: 25px;
     border: none;
-    letter-spacing: .12rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight:medium;
 }
-
+.button-coloring-2{
+    background-color: lightskyblue;
+    color: white;
+}
+.text-style-1{
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 22px;
+}
 .text-style-2, form{
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
+}
+.text-style-3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+.text-style-4, h3{
+    font-family: 'Roboto', sans-serif;
+    font-weight: medium;
+    letter-spacing: .12rem;
+    font-size: 14px;
 }
 
 /*   Navbar   */

@@ -19,11 +19,11 @@
         <div class="initial-main-right">
             <div class="navbar initial-navbar">
                 <div class="nav-left">
-                    HealthJournal
+                    <a href="/">HealthJournal</a>
                 </div>
                 <div class="nav-right text-style-2">
-                    <a href="">OVERVIEW</a>
-                    <a href="/login">LOGIN</a>
+                    <!-- <a href="/">OVERVIEW</a> -->
+                    <a href="/logging">LOGIN</a>
                 </div>
             </div>
             <div class="initial-body">
@@ -31,7 +31,7 @@
                     <div class="initial-body-text initial-body-head">
                         Sign up for HealthJournal
                     </div>
-                    <form action="/" method = "GET"> <!-- change -->
+                    <form action="/register" method = "POST"> <!-- change -->
                         <table>
                             <tr>
                                 <td><label for="first_name">First Name </label>
@@ -56,10 +56,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                    <td><input class = "button-1 center" type="submit" value = "SIGN UP"></td>
+                                    <td><input class = "button-1 center text-style-4" type="submit" value = "SIGN UP"></td>
                             </tr>
                         </table>
                     </form>
+                    {% with messages = get_flashed_messages(with_categories=true) %}     <!-- declare a variable called messages -->
+                        {% if messages %}                            <!-- check if there are any messages -->
+                            {% for category, message in messages %}            <!-- loop through the messages -->
+                                {% if category == 'register' %}
+                                    <p class = "{{category}}">{{message}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </div>
             </div>
         </div>
