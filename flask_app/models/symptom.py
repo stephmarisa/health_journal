@@ -30,3 +30,14 @@ class Symptom:
         for row in results:
             symptoms.append(symptom_bank.SymptomBank(row))
         return symptoms
+
+    # edit this
+    @classmethod 
+    def get_daily_symptoms_by_day(cls, data):
+        query = "SELECT * FROM daily_symptoms WHERE report_id = %(report_id)s;" 
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        print(results)
+        daily_symptoms = []
+        for row in results:
+            daily_symptoms.append(cls(row))
+        return daily_symptoms

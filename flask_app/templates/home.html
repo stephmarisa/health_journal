@@ -23,6 +23,7 @@
                 </div>
                 <div class="nav-right text-style-2">
                     <a href="">OVERVIEW</a>
+                    <a href="">PROFILE</a>
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
@@ -39,7 +40,17 @@
                             + Add Report
                         </a>
                     </div>
-                    <div class="report-card">Dummy Report</div>
+                    {% for report in reports_list%}
+                        <div class="report-card">
+                            <h3>{{report.id}}</h3>
+                            <p>Notes: {{report.notes}}</p>
+                            <p>Date: {{report.created_at}}</p>
+                            <p>Morning avg: {{report.morning_average()}}</p>
+                            <p>Evening avg: {{report.night_average()}}</p>
+                            <p>Overall avg: {{report.overall_average()}}</p>
+                        </div>
+                    {% endfor %}
+
                     <div class="report-card">Dummy Report</div>
                     <div class="report-card">Dummy Report</div>
                     <div class="report-card">Dummy Report</div>

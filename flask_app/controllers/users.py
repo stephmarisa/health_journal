@@ -70,5 +70,18 @@ def logout():
 
 @app.route('/home')
 def home():
-    return render_template("home.html")
+    data = {'user_id': session['user_id']}
+    reports_list = report.Report.get_all_reports_by_id(data)
+    # reversed_reports_list = reverse_list(reports_list)
+    return render_template("home.html", reports_list = reports_list)
 
+
+
+# come back later to display in reverse
+
+
+# def reverse_list(some_list):
+#     reversed_list = []
+#     for item in some_list:
+#         some_list.insert(0,item)
+#     return reversed_list
