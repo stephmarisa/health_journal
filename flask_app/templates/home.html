@@ -29,42 +29,26 @@
             <div class="home-body">
                 <div class="home-header">
                     <div class="container">
-                        <div class="daily-number text-style-3">3</div>
-                        <div class="day text-style-3">Today</div>
+                        <div class="day text-style-3">My Reports</div>
                     </div>
-                    <div class="home-dropdown">
-                        <select id="time-display" name="time-display" form="home-time-display">
-                            <option value="Day">Day</option>
-                            <option value="Week">Week</option>
-                            <option value="Month">Month</option>
-                        </select>
+                </div> 
+                <!-- add in for loop to load all cards render in reverse-->
+                <div class="report-cards-container">
+                    <div class="report-card">
+                        <a href="/createReport">
+                            + Add Report
+                        </a>
                     </div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
+                    <div class="report-card">Dummy Report</div>
                 </div>
-                <hr>
-                <form action="/home">
-                    <div class="home-symptoms-form">
-                        <div class="left">
-                            <h3>SYMPTOMS</h3>
-                            <div class="symptoms-card">
-                                <h3>Symptom 1</h3>
-                                <input type="range" id="morning" name="morning"
-                                min="1" max="10">
-                                <input type="range" id="night" name="night"
-                                min="1" max="10">
-                            </div>
-                            <div class="symptoms-add-new text-style-1">
-                                +
-                            </div>
-                        </div>
-                        <div class="right">
-                            <h3>NOTES</h3>
-                            <div class="notes-card">
-                                blah blah blah blah
-                            </div>
-                            <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "SUBMIT">
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

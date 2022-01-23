@@ -30,7 +30,8 @@
                 <div class="home-header">
                     <div class="container">
                         <div class="daily-number text-style-3">3</div>
-                        <div class="day text-style-3">Today</div>
+                        <div class="day text-style-3">Today's Report</div> 
+                        <!-- swap "today with the current date" -->
                     </div>
                     <div class="home-dropdown">
                         <select id="time-display" name="time-display" form="home-time-display">
@@ -41,17 +42,26 @@
                     </div>
                 </div>
                 <hr>
-                <form action="/home">
+                <form action="/newReport" method = "POST">
                     <div class="home-symptoms-form">
                         <div class="left">
                             <h3>SYMPTOMS</h3>
+                            {% for symptom in symptoms_list %}
                             <div class="symptoms-card">
-                                <h3>Symptom 1</h3>
-                                <input type="range" id="morning" name="morning"
-                                min="1" max="10">
-                                <input type="range" id="night" name="night"
-                                min="1" max="10">
+                                
+                                <h3>{{symptom.name}}</h3>
+                                <!-- <form action="/createSymptom", method = "POST"> -->
+                                    <label for="am-{{symptom.id}}">am</label>
+                                    <!-- <input type="range" id="am" name="am- brackets symptom_id brackets" -->
+                                    <input type="range" id="am" name="am-{{symptom.id}}"
+                                    min="1" max="10">
+                                    <label for="pm-{{symptom.id}}">pm</label>
+                                    <input type="range" id="pm" name="pm-{{symptom.id}}"
+                                    min="1" max="10">
+                                    <!-- <input class = "button-2 text-style-4 button-coloring-2" type="submit" value = "Save"> -->
+                                <!-- </form> -->
                             </div>
+                            {% endfor %}
                             <div class="symptoms-add-new text-style-1">
                                 +
                             </div>
@@ -59,8 +69,10 @@
                         <div class="right">
                             <h3>NOTES</h3>
                             <div class="notes-card">
-                                blah blah blah blah
+                                <textarea name="notes" id="" cols="60" rows="10"></textarea>
                             </div>
+                            <label for="flagged">flag</label>
+                            <input type="checkbox" id="flagged" name="flagged" value="flag">
                             <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "SUBMIT">
                         </div>
                     </div>
@@ -70,3 +82,18 @@
     </div>
 </body>
 </html>
+
+
+{% for symptom in symptoms_list %}
+<h3>{{symptom.name}}</h3>
+<!-- <form action="/createSymptom", method = "POST"> -->
+    <label for="am-{{symptom.id}}">am</label>
+    <!-- <input type="range" id="am" name="am- brackets symptom_id brackets" -->
+    <input type="range" id="am" name="am-{{symptom.id}}"
+    min="1" max="10">
+    <label for="pm-{{symptom.id}}">pm</label>
+    <input type="range" id="pm" name="pm-{{symptom.id}}"
+    min="1" max="10">
+    <!-- <input class = "button-2 text-style-4 button-coloring-2" type="submit" value = "Save"> -->
+<!-- </form> -->
+{% endfor %}

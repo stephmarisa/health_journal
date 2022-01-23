@@ -18,6 +18,11 @@ a{
     border-radius: 25px;
     border: none;
 }
+.button-2{
+    padding:10px 25px 10px 25px;
+    border-radius: 10px;
+    border: none;
+}
 .button-coloring-2{
     background-color: lightskyblue;
     color: white;

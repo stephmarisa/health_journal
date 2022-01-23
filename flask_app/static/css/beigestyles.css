@@ -24,7 +24,23 @@
 }
 
 
-/* Form for today */
+/* Reports Dashboard */
+.report-cards-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:left;
+}
+/* .cols-4-1, .cols-4-2, .cols-4-3, .cols-4-4{
+    flex:2;
+} */
+.report-card{
+    border: 2px solid black;
+    width: 300px; 
+    height: 200px;
+}
+
+
+/* Add new Report */
 .home-symptoms-form{
     padding: 30px 0px;
     display:flex;
@@ -49,6 +65,11 @@
     border: 1px solid black;
     margin-top:20px;
     height: 200px;
+    display:flex;
+    flex-direction: column;
+}
+.notes-card > textarea{
+    flex:1
 }
 .symptoms-add-new{
     border: 1px solid black;

@@ -20,6 +20,9 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+    
     @classmethod
     def create_user(cls,data):
         query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
@@ -85,3 +88,5 @@ class User:
             flash("please input a password", "login")
             is_valid = False
         return is_valid
+
+
