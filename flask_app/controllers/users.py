@@ -60,21 +60,19 @@ def login():
     print(session['user_id'], 'hiiiii')
     return redirect("/home")
 
-
 # Logout User
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
 
-
+# Home report dashboard
 @app.route('/home')
 def home():
     data = {'user_id': session['user_id']}
     reports_list = report.Report.get_all_reports_by_id(data)
     # reversed_reports_list = reverse_list(reports_list)
     return render_template("home.html", reports_list = reports_list)
-
 
 
 # come back later to display in reverse
@@ -85,3 +83,4 @@ def home():
 #     for item in some_list:
 #         some_list.insert(0,item)
 #     return reversed_list
+

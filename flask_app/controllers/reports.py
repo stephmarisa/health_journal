@@ -8,7 +8,7 @@ from flask_bcrypt import Bcrypt
 # @app.route('/show/entry/<int:entry_id>')
 # def show_entry(entry_id):
 #     return render_template('display_report.html')
-report
+
 
 # why does /create/report not load the css?
 #Create New report/Report
@@ -44,5 +44,42 @@ def new_report():
             'symptom_bank_id': this_symptom.id
         }
         new_symptom_id = symptom.Symptom.new_report_symptom(symptom_info)
+
+    return redirect('/home')
+
+# Edit Report
+@app.route('/edit/<int:report_id>')
+def edit_report(report_id):
+    symptoms_list = symptom.Symptom.get_all_symptoms()
+    print("hiiiiiiii",symptoms_list)
+    this_report = report.Report.get_by_id({'report_id': report_id})
+    print("hiiiiiii again",this_report.daily_symptoms)
+    return render_template("update_report.html", this_report = this_report, symptoms_list = symptoms_list)
+
+@app.route('/update/<int:report_id>', methods=["POST"])
+def update_report(report_id):
+    report_info = {
+        'id': report_id,
+        'notes': request.form['notes'],
+        # 'flagged': request.form['flagged'],
+        'user_id': session['user_id']
+    }
+    updated_report = report.Report.update_report(report_info)
+    this_report = report.Report.get_by_id({'report_id': report_id})
+
+    symptoms_list = this_report.daily_symptoms
+    for this_symptom in symptoms_list:
+        print("hiiiiiiii symptom id", this_symptom.id)
+        am_name = "am-" + str(this_symptom.id)
+        pm_name = "pm-" + str(this_symptom.id)
+        # create daily symptom
+        symptom_info = {
+            'am': request.form[am_name],
+            'pm': request.form[pm_name],
+            'report_id': report_id,
+            'symptom_bank_id': this_symptom.symptom_bank_id,
+            'id': this_symptom.id
+        }
+        updated_daily_symptom = symptom.Symptom.update_daily_symptom(symptom_info)
 
     return redirect('/home')

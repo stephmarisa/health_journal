@@ -1,0 +1,46 @@
+!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- CSS files -->
+    <link rel="stylesheet" href="static/css/mainstyles.css">
+    <link rel="stylesheet" href="static/css/beigestyles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="home-main-container">
+        <div class="home-main-left"></div>
+        <div class="home-main-right">
+            <div class="navbar home-navbar">
+                <div class="nav-left">
+                    <a href="/home">HealthJournal</a>
+                </div>
+                <div class="nav-right text-style-2">
+                    <a href="">OVERVIEW</a>
+                    <a href="">PROFILE</a>
+                    <a href="/logout">LOGOUT</a>
+                </div>
+            </div>
+            <div class="home-body">
+                <div class="home-header">
+                    <div class="container">
+                        <div class="day text-style-3">Add Symptom</div> 
+                    </div>
+                </div>
+                <hr>
+                <form action="/newSymptom" method = "POST">
+                    <label for="name">Symptom Name</label>
+                    <input type="text" name = "name">
+                    <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "SUBMIT">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

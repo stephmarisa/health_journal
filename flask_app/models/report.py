@@ -39,8 +39,7 @@ class Report:
         new_report_id = connectToMySQL(cls.db_name).query_db(query, data)
         return new_report_id
 
-
-    # edit this query so report contains the day's symptoms
+    # gets all reports for a given user
     @classmethod
     def get_all_reports_by_id(cls, data):
         query = "SELECT * FROM reports WHERE user_id = %(user_id)s;"
@@ -49,3 +48,15 @@ class Report:
         for row in results:
             reports.append(cls(row))
         return reports
+
+    # gets specific report given report id
+    @classmethod
+    def get_by_id(cls, data):
+        query = "SELECT * FROM reports WHERE id = %(report_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        return cls(results[0])
+
+    @classmethod
+    def update_report(cls, data):
+        query = "UPDATE reports SET notes = %(notes)s, user_id = %(user_id)s, updated_at = NOW() WHERE id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query, data)

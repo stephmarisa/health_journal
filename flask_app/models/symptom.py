@@ -15,6 +15,7 @@ class Symptom:
         self.updated_at = data['updated_at']
         self.report_id = data['report_id']
         self.symptom_bank_id = data['symptom_bank_id']
+        # self.symptom_name = symptom_bank.SymptomBank.get_name_by_id(data['symptom_bank_id'])
 
     @classmethod
     def new_report_symptom(cls, data):
@@ -36,8 +37,13 @@ class Symptom:
     def get_daily_symptoms_by_day(cls, data):
         query = "SELECT * FROM daily_symptoms WHERE report_id = %(report_id)s;" 
         results = connectToMySQL(cls.db_name).query_db(query, data)
-        print(results)
         daily_symptoms = []
         for row in results:
             daily_symptoms.append(cls(row))
         return daily_symptoms
+    
+    @classmethod
+    def update_daily_symptom(cls, data):
+        query = "UPDATE daily_symptoms SET am = %(am)s, pm = %(pm)s, updated_at = NOW() WHERE id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+    
