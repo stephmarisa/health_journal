@@ -74,10 +74,6 @@ def home():
     # reversed_reports_list = reverse_list(reports_list)
     return render_template("home.html", reports_list = reports_list)
 
-
-# come back later to display in reverse
-
-
 # def reverse_list(some_list):
 #     reversed_list = []
 #     for item in some_list:
@@ -86,13 +82,33 @@ def home():
 
 @app.route('/trends')
 def display_trends():
-    data = {
-        "2022-01-22": 7.5,
-        "2022-01-23": 1.0,
-        "2022-01-24": 5.0
-    }
-    xlabels = list(data.keys())
-    ylabels = list(data.values())
-    # print(" HIIIIIII2", labels, values)
+    # data = {
+    #     "2022-01-22": 7.5,
+    #     "2022-01-23": 1.0,
+    #     "2022-01-24": 5.0
+    # }
 
-    return render_template("trends.html", xlabels = xlabels, ylabels = ylabels)
+    # get list of reports
+    data = {'user_id': session['user_id']}
+    reports_list = report.Report.get_all_reports_by_id(data)
+
+    #  make dictionary for overall data, morning data, and evening data
+    overall_dataset = {}
+    morning_dataset = {}
+    evening_dataset = {}
+    for this_report in reports_list:
+        dateTimeObj = this_report.created_at
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M)")
+        overall_dataset[timestampStr] = this_report.overall_average()
+        morning_dataset[timestampStr] = this_report.morning_average()
+        evening_dataset[timestampStr] = this_report.night_average()
+    
+    # dataset 1:overview report.created_at: report.overall_average
+    x1labels = list(overall_dataset.keys())
+    y1labels = list(overall_dataset.values())
+    x2labels = list(morning_dataset.keys())
+    y2labels = list(morning_dataset.values())
+    x3labels = list(evening_dataset.keys())
+    y3labels = list(evening_dataset.values())
+
+    return render_template("trends.html", x1labels = x1labels, y1labels = y1labels, x2labels = x2labels, y2labels = y2labels, x3labels = x3labels, y3labels = y3labels)

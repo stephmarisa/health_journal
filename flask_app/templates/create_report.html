@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="static/css/beigestyles.css"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/beigestyles.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,18 +51,19 @@
                             <h3>SYMPTOMS</h3>
                             {% for symptom in symptoms_list %}
                             <div class="symptoms-card">
-                                
                                 <h3>{{symptom.name}}</h3>
-                                <!-- <form action="/createSymptom", method = "POST"> -->
-                                    <label for="am-{{symptom.id}}">am</label>
-                                    <!-- <input type="range" id="am" name="am- brackets symptom_id brackets" -->
-                                    <input type="range" id="am" name="am-{{symptom.id}}"
-                                    min="1" max="10">
-                                    <label for="pm-{{symptom.id}}">pm</label>
-                                    <input type="range" id="pm" name="pm-{{symptom.id}}"
-                                    min="1" max="10">
-                                    <!-- <input class = "button-2 text-style-4 button-coloring-2" type="submit" value = "Save"> -->
-                                <!-- </form> -->
+                                <!-- add dynamic range slider connects to script.js-->
+                                    <div class="slidecontainer">
+                                        <label for="am-{{symptom.id}}">am: </label>
+                                        <span class="limit"></span>
+                                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="am-{{symptom.id}}">
+                                    </div>
+                                    
+                                    <div class="slidecontainer">
+                                        <label for="pm-{{symptom.id}}">pm: </label>
+                                        <span class="limit"></span>
+                                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="pm-{{symptom.id}}">
+                                    </div>
                             </div>
                             {% endfor %}
                             <div class="symptoms-add-new text-style-4">
@@ -84,5 +84,6 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>    
 </body>
 </html>

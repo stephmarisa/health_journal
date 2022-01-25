@@ -43,12 +43,12 @@
                         </label>
                         Morning:
                         <label class="switch">
-                            <input id = "morning" type="checkbox" onclick = "toggleData(this)" checked ="" value = "1">
+                            <input id = "morning" type="checkbox" onclick = "toggleData(this)" value = "1">
                             <span class="slider round"></span>
                         </label>
                         Evening:
                         <label class="switch">
-                            <input id = "evening" type="checkbox" onclick = "toggleData(this)" checked ="" value = "2">
+                            <input id = "evening" type="checkbox" onclick = "toggleData(this)" value = "2">
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -59,10 +59,10 @@
                     var myChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: {{xlabels | safe}},
+                            labels: {{x1labels | safe}},
                             datasets: [{
                                 label: 'Overall',
-                                data: [1, 4, 3],
+                                data: {{y1labels | safe}},
                                 backgroundColor: [
                                     'rgba(155, 100, 255, 0.2)'
                                 ],
@@ -73,7 +73,8 @@
                             },
                                 {
                                 label: 'Morning',
-                                data: [12, 10, 3],
+                                data: {{y2labels | safe}},
+                                hidden: true,
                                 backgroundColor: [
                                     'rgba(54, 162, 235, 0.2)',
                                 ],
@@ -84,7 +85,8 @@
                             },
                             {
                                 label: 'Evening',
-                                data: [12, 19, 3],
+                                data: {{y3labels | safe}},
+                                hidden: true,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                 ],

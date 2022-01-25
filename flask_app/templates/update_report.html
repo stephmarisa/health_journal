@@ -51,17 +51,19 @@
                             <div class="symptoms-card">
                                 <h3>{{symptoms_list[symptom.symptom_bank_id-1].name}}</h3>
                                     <p>{{symptom.am}}, {{symptom.pm}}</p>
-                                    <label for="am-{{symptom.id}}">am</label>
-                                    <input type="range" id="am" name="am-{{symptom.id}}"
-                                    min="1" max="10" value = {{symptom.am}}>
-                                    <label for="pm-{{symptom.id}}">pm</label>
-                                    <input type="range" id="pm" name="pm-{{symptom.id}}"
-                                    min="1" max="10" value = {{symptom.pm}}>
+                                    <!-- add dynamic range slider -->
+                                    <div class="slidecontainer">
+                                        <label for="am-{{symptom.id}}">am: </label>
+                                        <span class="limit"></span>
+                                        <input type="range" min="1" max="10" value={{symptom.am}} class="slider" id="myRange" name="am-{{symptom.id}}">
+                                    </div>
+                                    <div class="slidecontainer">
+                                        <label for="pm-{{symptom.id}}">pm: </label>
+                                        <span class="limit"></span>
+                                        <input type="range" min="1" max="10" value = {{symptom.pm}} class="slider" id="myRange" name="pm-{{symptom.id}}">
+                                    </div>
                             </div>
                             {% endfor %}
-                            <div class="symptoms-add-new text-style-4">
-                                <!-- <a href="/createSymptom">Add Symptom</a> -->
-                            </div>
                         </div>
                         <div class="right">
                             <h3>NOTES</h3>
@@ -77,5 +79,6 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>    
 </body>
 </html>
