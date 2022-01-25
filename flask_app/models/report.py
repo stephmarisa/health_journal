@@ -3,6 +3,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 import re
 from flask_app.models import symptom, user
+from math import log10, floor
 
 class Report:
     db_name = "healthJournalSchema"
@@ -16,17 +17,21 @@ class Report:
         self.user_id = data['user_id']
         self.daily_symptoms = symptom.Symptom.get_daily_symptoms_by_day({'report_id': data['id']})
 
+
+    def round_val(self, x):
+        return round(x, 3-int(floor(log10(abs(x))))-1)
+
     def morning_average(self):
         total = 0
         for this_symptom in self.daily_symptoms:
             total += this_symptom.am 
-        return total/(len(self.daily_symptoms))
+        return self.round_val(total/(len(self.daily_symptoms)))
 
     def night_average(self):
         total = 0
         for this_symptom in self.daily_symptoms:
             total+= this_symptom.pm
-        return total/(len(self.daily_symptoms))
+        return self.round_val(total/(len(self.daily_symptoms)))
     
     def overall_average(self):
         overall = (self.morning_average() + self.night_average())/2

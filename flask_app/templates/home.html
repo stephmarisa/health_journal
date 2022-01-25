@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- CSS files -->
-    <link rel="stylesheet" href="static/css/mainstyles.css">
-    <link rel="stylesheet" href="static/css/beigestyles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/beigestyles.css') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
                     <a href="/home">HealthJournal</a>
                 </div>
                 <div class="nav-right text-style-2">
-                    <a href="">OVERVIEW</a>
+                    <a href="/trends">OVERVIEW</a>
                     <a href="">PROFILE</a>
                     <a href="/logout">LOGOUT</a>
                 </div>
@@ -36,7 +36,7 @@
                 <!-- add in for loop to load all cards render in reverse-->
                 <div class="report-cards-container">
                     <div class="report-card">
-                        <a href="/createReport">
+                        <a href="/create/report">
                             + Add Report
                         </a>
                     </div>
@@ -51,15 +51,6 @@
                             <a href="/edit/{{report.id}}">Edit</a>
                         </div>
                     {% endfor %}
-
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
-                    <div class="report-card">Dummy Report</div>
                 </div>
             </div>
         </div>

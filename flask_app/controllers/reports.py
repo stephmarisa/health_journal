@@ -12,7 +12,7 @@ from flask_bcrypt import Bcrypt
 
 # why does /create/report not load the css?
 #Create New report/Report
-@app.route('/createReport')
+@app.route('/create/report')
 def create_report():
     if 'user_id' not in session:
         return redirect('/logout')
@@ -51,9 +51,7 @@ def new_report():
 @app.route('/edit/<int:report_id>')
 def edit_report(report_id):
     symptoms_list = symptom.Symptom.get_all_symptoms()
-    print("hiiiiiiii",symptoms_list)
     this_report = report.Report.get_by_id({'report_id': report_id})
-    print("hiiiiiii again",this_report.daily_symptoms)
     return render_template("update_report.html", this_report = this_report, symptoms_list = symptoms_list)
 
 @app.route('/update/<int:report_id>', methods=["POST"])

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends</title>
+    <!-- CSS files -->
+    <link rel="stylesheet" href="static/css/mainstyles.css">
+    <link rel="stylesheet" href="static/css/beigestyles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <!-- <script src = "https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script> -->
+    <script
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </script>  
+</head>
+<body>
+    <div class="home-main-container">
+        <div class="home-main-left"></div>
+        <div class="home-main-right">
+            <div class="navbar home-navbar">
+                <div class="nav-left">
+                    <a href="/home">HealthJournal</a>
+                </div>
+                <div class="nav-right text-style-2">
+                    <a href="/trends">OVERVIEW</a>
+                    <a href="">PROFILE</a>
+                    <a href="/logout">LOGOUT</a>
+                </div>
+            </div>
+            <div class="home-body">  
+
+                <div class="chartBox">
+                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                    <div class="legend">
+                        Overall:
+                        <label class="switch">
+                            <input id = "overall" type="checkbox" onclick = "toggleData(this)" checked ="" value = "0">
+                            <span class="slider round"></span>
+                        </label>
+                        Morning:
+                        <label class="switch">
+                            <input id = "morning" type="checkbox" onclick = "toggleData(this)" checked ="" value = "1">
+                            <span class="slider round"></span>
+                        </label>
+                        Evening:
+                        <label class="switch">
+                            <input id = "evening" type="checkbox" onclick = "toggleData(this)" checked ="" value = "2">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            
+                <script>
+                    var ctx = document.getElementById('myChart');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: {{xlabels | safe}},
+                            datasets: [{
+                                label: 'Overall',
+                                data: [1, 4, 3],
+                                backgroundColor: [
+                                    'rgba(155, 100, 255, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(155, 100, 255, 1)'
+                                ],
+                                borderWidth: 1
+                            },
+                                {
+                                label: 'Morning',
+                                data: [12, 10, 3],
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',
+                                ],
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Evening',
+                                data: [12, 19, 3],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            // plugins: {
+                            //     legend: {
+                            //         display: false
+                            //     }
+                            // },
+                            tension: 0.4,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    function toggleData(dataset){
+                        const isDataShown = myChart.isDatasetVisible(dataset.value);
+                        if(isDataShown == false){
+                            myChart.show(dataset.value);
+                        }
+                        if(isDataShown == true){
+                            myChart.hide(dataset.value);
+                        }
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

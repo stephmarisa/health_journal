@@ -84,3 +84,15 @@ def home():
 #         some_list.insert(0,item)
 #     return reversed_list
 
+@app.route('/trends')
+def display_trends():
+    data = {
+        "2022-01-22": 7.5,
+        "2022-01-23": 1.0,
+        "2022-01-24": 5.0
+    }
+    xlabels = list(data.keys())
+    ylabels = list(data.values())
+    # print(" HIIIIIII2", labels, values)
+
+    return render_template("trends.html", xlabels = xlabels, ylabels = ylabels)

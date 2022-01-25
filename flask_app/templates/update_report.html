@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- CSS files -->
-    <link rel="stylesheet" href="static/css/mainstyles.css">
-    <link rel="stylesheet" href="static/css/beigestyles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/beigestyles.css') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,8 +68,8 @@
                             <div class="notes-card">
                                 <textarea name="notes" id="" cols="60" rows="10">{{this_report.notes}}</textarea>
                             </div>
-                            <label for="flagged">flag</label>
-                            <input type="checkbox" id="flagged" name="flagged" value="flag"> 
+                            <!-- <label for="flagged">flag</label>
+                            <input type="checkbox" id="flagged" name="flagged" value="1" checked = >  -->
                             <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "UPDATE">
                         </div>
                     </div>

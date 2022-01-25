@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- CSS files -->
-    <link rel="stylesheet" href="static/css/mainstyles.css">
-    <link rel="stylesheet" href="static/css/beigestyles.css">
+    <!-- <link rel="stylesheet" href="static/css/mainstyles.css">
+    <link rel="stylesheet" href="static/css/beigestyles.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/beigestyles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 </head>
-<body>
+<body> 
     <div class="home-main-container">
         <div class="home-main-left"></div>
         <div class="home-main-right">
@@ -72,8 +75,8 @@
                             <div class="notes-card">
                                 <textarea name="notes" id="" cols="60" rows="10"></textarea>
                             </div>
-                            <label for="flagged">flag</label>
-                            <input type="checkbox" id="flagged" name="flagged" value="flag">
+                            <!-- <label for="flagged">flag</label> -->
+                            <!-- <input type="checkbox" id="flagged" name="flagged" value="1"> -->
                             <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "SUBMIT">
                         </div>
                     </div>
