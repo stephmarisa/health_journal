@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trends</title>
+    <title>Overview</title>
     <!-- CSS files -->
     <link rel="stylesheet" href="static/css/mainstyles.css">
     <link rel="stylesheet" href="static/css/beigestyles.css">
@@ -26,100 +26,160 @@
                     <a href="/home">HealthJournal</a>
                 </div>
                 <div class="nav-right text-style-2">
-                    <a href="/trends">OVERVIEW</a>
+                    <div class="trends-overview-head">
+                        <a href="/trends">OVERVIEW</a>
+                        <img src="{{ url_for('static', filename='imgs/squiggle1.png') }}">
+                    </div>
                     <a href="">PROFILE</a>
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
-            <div class="home-body">  
-
-                <div class="chartBox">
-                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-                    <div class="legend">
-                        Overall:
-                        <label class="switch">
-                            <input id = "overall" type="checkbox" onclick = "toggleData(this)" checked ="" value = "0">
-                            <span class="slider round"></span>
-                        </label>
-                        Morning:
-                        <label class="switch">
-                            <input id = "morning" type="checkbox" onclick = "toggleData(this)" value = "1">
-                            <span class="slider round"></span>
-                        </label>
-                        Evening:
-                        <label class="switch">
-                            <input id = "evening" type="checkbox" onclick = "toggleData(this)" value = "2">
-                            <span class="slider round"></span>
-                        </label>
+            <div class="home-body-dash">  
+                <div class="overview-dashboard-head">
+                    <h1 class="padd-down-20">Dahboard ~ Overview</h1>
+                    <p class = "text-style-4 padd-down-50">A summary of my health data and trends</p>
+                    <div class="overview-head-bottom-icons text-style-5">
+                        <a class = "overview-head-bottom-icon" id = "trend-button" href="#trends">
+                            <div class="trends-button">
+                                <img src="{{ url_for('static', filename='imgs/trends.png') }}">
+                                <p>trends</p>
+                            </div>
+                        </a>
+                        <a class = "overview-head-bottom-icon" id = "report-button" href="/home">
+                            <div class="trends-button">
+                                <img src="{{ url_for('static', filename='imgs/reports.png') }}">
+                                <p>reports</p>
+                            </div>
+                        </a>
+                        <a class = "overview-head-bottom-icon" id = "trend-button" href="#notes">
+                            <div class="trends-button">
+                                <img src="{{ url_for('static', filename='imgs/notes.png') }}">
+                                <p>notes</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            
-                <script>
-                    var ctx = document.getElementById('myChart');
-                    var myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: {{x1labels | safe}},
-                            datasets: [{
-                                label: 'Overall',
-                                data: {{y1labels | safe}},
-                                backgroundColor: [
-                                    'rgba(155, 100, 255, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(155, 100, 255, 1)'
-                                ],
-                                borderWidth: 1
-                            },
+                <div id = "trends" class="trends-page">
+                        <!-- <select class="form-control browser-default dropdown" id="symptomOptions" onchange = "getSymptom(this)">
+                        <option value="all" selected="selected">All Symptoms</option>
+                        <option value="0">set 1</option>
+                        <option value="1">set 2</option>
+                    </select> -->
+                    <div class="text-style-1 padd-down-20">Trends</div>
+                    <div class="text-style-5 padd-down-20">RATING OVER TIME</div>
+                    <div class="chartBox">
+                        <h3></h3>
+                        <canvas id="myChart" style="width:100%;max-width:700px;height:200px;"></canvas>
+                        <div class="legend text-style-4">
+                            <div class="container-temp">
+                                Daily Average:
+                                <label class="switch">
+                                    <input id = "overall" type="checkbox" onclick = "toggleData(this)" checked ="" value = "0">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="container-temp">
+                                Morning:
+                                <label class="switch">
+                                    <input id = "morning" type="checkbox" onclick = "toggleData(this)" value = "1">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="container-temp">
+                                Evening:
+                                <label class="switch">
+                                    <input id = "evening" type="checkbox" onclick = "toggleData(this)" value = "2">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: {{x1labels | safe}},
+                                datasets: [{
+                                    label: 'Daily Average',
+                                    data: {{y1labels | safe}},
+                                    backgroundColor: [
+                                         // 'rgba(155, 100, 255, 0.2)'
+                                        'rgba(148, 33, 115, 0.2)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(148, 33, 115, 1)'
+                                    ],
+                                    borderWidth: 1
+                                },
+                                    {
+                                    label: 'Morning',
+                                    data: {{y2labels | safe}},
+                                    hidden: true,
+                                    backgroundColor: [
+                                        // 'rgba(54, 162, 235, 0.2)',
+                                        'rgba(219, 158, 15,0.2)',
+                                    ],
+                                    borderColor: [
+                                        // 'rgba(54, 152, 235, 1)',
+                                        'rgba(219, 158, 16,1)',
+                                    ],
+                                    borderWidth: 1
+                                },
                                 {
-                                label: 'Morning',
-                                data: {{y2labels | safe}},
-                                hidden: true,
-                                backgroundColor: [
-                                    'rgba(54, 162, 235, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(54, 162, 235, 1)',
-                                ],
-                                borderWidth: 1
+                                    label: 'Evening',
+                                    data: {{y3labels | safe}},
+                                    hidden: true,
+                                    backgroundColor: [
+                                        'rgba(80, 120, 72, 0.2)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(80, 120, 72, 1)',
+                                    ],
+                                    borderWidth: 1
+                                }]
                             },
-                            {
-                                label: 'Evening',
-                                data: {{y3labels | safe}},
-                                hidden: true,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            // plugins: {
-                            //     legend: {
-                            //         display: false
-                            //     }
-                            // },
-                            tension: 0.4,
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                            options: {
+                                // plugins: {
+                                //     legend: {
+                                //         display: false
+                                //     }
+                                // },
+                                tension: 0.4,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
-                        }
-                    });
-                    function toggleData(dataset){
-                        const isDataShown = myChart.isDatasetVisible(dataset.value);
-                        if(isDataShown == false){
-                            myChart.show(dataset.value);
-                        }
-                        if(isDataShown == true){
-                            myChart.hide(dataset.value);
-                        }
-                    };
-                </script>
+                        });
+                        // var numSymptoms = 3;
+
+                        // function getSymptom(dataset){
+                        //     for (let i = 0; i < numSymptoms; i++) {
+                        //         const isDataShown = myChart.isDatasetVisible(i);
+                        //         if (isDataShown == true && i != dataset.value ){
+                        //             myChart.hide(i);
+                        //         }
+                        //         else{
+                        //             myChart.show(dataset.value)
+                        //         }
+                        //     }
+                        // };
+                        function toggleData(dataset){
+                            const isDataShown = myChart.isDatasetVisible(dataset.value);
+                            if(isDataShown == false){
+                                myChart.show(dataset.value);
+                            }
+                            if(isDataShown == true){
+                                myChart.hide(dataset.value);
+                            }
+                        };
+
+                    </script>
+                    <script type="text/javascript" src="{{ url_for('static', filename='/js/script.js') }}"></script>
+                </div>
+                <div class="notes-display"></div>
             </div>
         </div>
     </div>

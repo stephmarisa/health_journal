@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Report</title>
+    <title>View Report</title>
     <!-- CSS files -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mainstyles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/beigestyles.css') }}">
@@ -23,7 +23,7 @@
                     <img src="{{ url_for('static', filename='imgs/squiggle1.png') }}">
                 </div>
                 <div class="nav-right text-style-2">
-                    <a href="/trends">OVERVIEW</a>
+                    <a href="">OVERVIEW</a>
                     <a href="">PROFILE</a>
                     <a href="/logout">LOGOUT</a>
                 </div>
@@ -33,18 +33,10 @@
                 <div class="home-body">
                     <div class="home-header">
                         <div class="container">
-                            <p hidden id = "daily-number" >{{this_report.overall_average()}}</p>
-                            <div id = "daily-number-view" class="text-style-3">{{this_report.overall_average()}}</div>
-                            <div class="day text-style-3">Edit Report: {{this_report.created_at.strftime("%d-%b-%Y")}}</div> 
+                            <div class="daily-number text-style-3">{{this_report.overall_average()}}</div>
+                            <div class="day text-style-3">Entry #{{this_report.id}} ~ {{this_report.created_at.strftime("%d-%b-%Y")}}</div> 
                             <!-- swap "today with the current date" -->
                         </div>
-                        <!-- <div class="home-dropdown">
-                            <select id="time-display" name="time-display" form="home-time-display">
-                                <option value="Day">Day</option>
-                                <option value="Week">Week</option>
-                                <option value="Month">Month</option>
-                            </select>
-                        </div> -->
                     </div>
                     <hr>
                     <form action="/update/{{this_report.id}}" method = "POST">
@@ -52,22 +44,10 @@
                             <div class="left">
                                 <h3 class = "gray-text">SYMPTOMS</h3>
                                 {% for symptom in this_report.daily_symptoms %}
-                                <div class="symptoms-card">
-                                    <h3 class= "padd-down-20">{{symptoms_list[symptom.symptom_bank_id-1].name}}</h3>
-                                        
-                                        <!-- add dynamic range slider -->
-                                        <div class="slidecontainer padd-down-20">
-                                            <label for="am-{{symptom.id}}">am: </label>
-                                            <span class="range-value">{{symptom.am}}</span>
-                                            <br>
-                                            <input type="range" min="1" max="10" value={{symptom.am}} class="slider" id="myRange" name="am-{{symptom.id}}">
-                                        </div>
-                                        <div class="slidecontainer">
-                                            <label for="pm-{{symptom.id}}">pm: </label>
-                                            <span class="range-value">{{symptom.pm}}</span>
-                                            <br>
-                                            <input type="range" min="1" max="10" value = {{symptom.pm}} class="slider" id="myRange" name="pm-{{symptom.id}}">
-                                        </div>
+                                <div class="symptoms-card ">
+                                    <h3 class = "padd-down-20">{{symptoms_list[symptom.symptom_bank_id-1].name}}</h3>
+                                        <p class = "padd-down-10">am: {{symptom.am}}</p>
+                                        <p>pm: {{symptom.pm}}</p>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -77,20 +57,12 @@
                                     <div class="notes-card">
                                         <textarea name="notes" id="" cols="50" rows="10">{{this_report.notes}}</textarea>
                                     </div>
-                                    <!-- <label for="flagged">flag</label> -->
-                                    <!-- <input type="checkbox" id="flagged" name="flagged" value="1"> -->
-                                </div>
-                                <div class="report bottom">
-                                    <div class="submit-button">
-                                        <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "UPDATE">
-                                    </div> 
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>    

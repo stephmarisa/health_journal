@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .range__slider [type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 13px;
+            border-radius: 6px;
+            background: #f1f1f1;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            height: 15px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="container">
+    <form class="range">
+        <div class="form-group range__slider">
+        <input type="range" step="500">
+        </div><!--/form-group-->
+        <div class="form-group range__value">
+        <label>Loan Amount</label>
+        <span></span>            
+        </div><!--/form-group-->
+    </form>
+    </div><!--/container-->
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='/js/slider.js') }}"></script>
+</html>

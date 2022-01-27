@@ -98,17 +98,13 @@ def display_trends():
     evening_dataset = {}
     for this_report in reports_list:
         dateTimeObj = this_report.created_at
-        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M)")
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y %H:%M")
+        # (%H:%M)
         overall_dataset[timestampStr] = this_report.overall_average()
         morning_dataset[timestampStr] = this_report.morning_average()
         evening_dataset[timestampStr] = this_report.night_average()
     
     # dataset 1:overview report.created_at: report.overall_average
-    x1labels = list(overall_dataset.keys())
-    y1labels = list(overall_dataset.values())
-    x2labels = list(morning_dataset.keys())
-    y2labels = list(morning_dataset.values())
-    x3labels = list(evening_dataset.keys())
-    y3labels = list(evening_dataset.values())
+    x1labels, y1labels, y2labels, y3labels  = list(overall_dataset.keys()), list(overall_dataset.values()), list(morning_dataset.values()), list(evening_dataset.values())
 
-    return render_template("trends.html", x1labels = x1labels, y1labels = y1labels, x2labels = x2labels, y2labels = y2labels, x3labels = x3labels, y3labels = y3labels)
+    return render_template("trends.html", x1labels = x1labels, y1labels = y1labels, y2labels = y2labels, y3labels = y3labels)

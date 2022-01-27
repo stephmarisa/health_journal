@@ -15,11 +15,11 @@
 </head>
 <body>
     <div class="home-main-container">
-        <div class="home-main-left"></div>
         <div class="home-main-right">
             <div class="navbar home-navbar">
-                <div class="nav-left">
+                <div class="nav-left home-nav-left">
                     <a href="/home">HealthJournal</a>
+                    <img src="{{ url_for('static', filename='imgs/squiggle1.png') }}">
                 </div>
                 <div class="nav-right text-style-2">
                     <a href="/trends">OVERVIEW</a>
@@ -27,7 +27,7 @@
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
-            <div class="home-body">
+            <div class="home-body-dash">
                 <div class="home-header">
                     <div class="container">
                         <div class="day text-style-3">My Reports</div>
@@ -35,20 +35,35 @@
                 </div> 
                 <!-- add in for loop to load all cards render in reverse-->
                 <div class="report-cards-container">
-                    <div class="report-card">
+                    <div class="report-card add-report-card text-style-4">
                         <a href="/create/report">
                             + Add Report
                         </a>
                     </div>
                     {% for report in reports_list%}
                         <div class="report-card">
-                            <h3>{{report.id}}</h3>
-                            <p>Notes: {{report.notes}}</p>
-                            <p>Date: {{report.created_at}}</p>
-                            <p>Morning avg: {{report.morning_average()}}</p>
-                            <p>Evening avg: {{report.night_average()}}</p>
-                            <p>Overall avg: {{report.overall_average()}}</p>
-                            <a href="/edit/{{report.id}}">Edit</a>
+                            <div class="middle">
+                                <div class="edit-view-options">
+                                    <a class = "text-style-4 view-button" href="/view/{{report.id}}">View</a>
+                                    <a class = "text-style-4 edit-button" href="/edit/{{report.id}}">Edit</a>
+                                </div>
+                            </div>
+                            <div class="report-card-main-view">
+                                <div class="container">
+                                    <h3 class = "padd-down-10">Entry {{report.id}}</h3>
+                                    <p class = "padd-down-10 text-style-6 ">{{report.created_at.strftime("%d-%b-%Y")}}</p>
+                                </div>
+                                <div class="morning-color-block text-style-4">
+                                    <p>Morning avg: {{report.morning_average()}}</p>
+                                </div>
+                                <div class="evening-color-block text-style-4">
+                                    <p>Evening avg: {{report.night_average()}}</p>
+                                </div>
+                                <div class="overall-color-block text-style-4 padd-down-20">
+                                    <p>Overall avg: {{report.overall_average()}}</p>
+                                </div>
+                                <p class = "text-style-5 padd-down-10">{{report.notes[:40]}}...</p>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

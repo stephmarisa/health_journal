@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Create Report</title>
     <!-- CSS files -->
     <!-- <link rel="stylesheet" href="static/css/mainstyles.css">
     <link rel="stylesheet" href="static/css/beigestyles.css"> -->
@@ -20,68 +20,81 @@
         <div class="home-main-left"></div>
         <div class="home-main-right">
             <div class="navbar home-navbar">
-                <div class="nav-left">
+                <div class="nav-left home-nav-left">
                     <a href="/home">HealthJournal</a>
+                    <img src="{{ url_for('static', filename='imgs/squiggle1.png') }}">
                 </div>
                 <div class="nav-right text-style-2">
-                    <a href="">OVERVIEW</a>
+                    <a href="/trends">OVERVIEW</a>
                     <a href="">PROFILE</a>
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
-            <div class="home-body">
-                <div class="home-header">
-                    <div class="container">
-                        <div class="daily-number text-style-3">3</div>
-                        <div class="day text-style-3">Today's Report</div> 
-                        <!-- swap "today with the current date" -->
+            <div class="main">
+                <a class = "text-style-5" href="/home">← Back to Home</a>
+                <div class="home-body">
+                    <div class="home-header">
+                        <div class="container">
+                            <p hidden id = "daily-number" >5.0</p>
+                            <div id = "daily-number-view" class="text-style-3">5.0</div>
+                            <div class="day text-style-3">Today's Report</div> 
+                            <!-- swap "today with the current date" -->
+                        </div>
+                        <!-- <div class="home-dropdown">
+                            <select id="time-display" name="time-display" form="home-time-display">
+                                <option value="Day">Day</option>
+                                <option value="Week">Week</option>
+                                <option value="Month">Month</option>
+                            </select>
+                        </div> -->
                     </div>
-                    <div class="home-dropdown">
-                        <select id="time-display" name="time-display" form="home-time-display">
-                            <option value="Day">Day</option>
-                            <option value="Week">Week</option>
-                            <option value="Month">Month</option>
-                        </select>
-                    </div>
+                    <hr>
+                    <form action="/newReport" method = "POST">
+                        <div class="home-symptoms-form">
+                            <div class="left">
+                                <h3 class = "gray-text">SYMPTOMS</h3>
+                                {% for symptom in symptoms_list %}
+                                <div class="symptoms-card">
+                                    <h3 class ="padd-down-20">{{symptom.name}}</h3>
+                                    <!-- add dynamic range slider connects to script.js-->
+                                        <div class="slidecontainer padd-down-10">
+                                            <label for="am-{{symptom.id}}">am: </label>
+                                            <span class="range-value">5</span>
+                                            <br>
+                                            <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="am-{{symptom.id}}">
+                                        </div>
+                                        <div class="slidecontainer">
+                                            <label for="pm-{{symptom.id}}">pm: </label>
+                                            <span class="range-value">5</span>
+                                            <br>
+                                            <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="pm-{{symptom.id}}">
+                                        </div>
+                                </div>
+                                {% endfor %}
+                                <div class="symptoms-add-new text-style-4">
+                                    <a href="/createSymptom">+ Add Symptom</a>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="report-top">
+                                    <h3 class = "gray-text">NOTES</h3>
+                                    <div class="notes-card">
+                                        <textarea name="notes" id="" cols="50" rows="20"></textarea>
+                                    </div>
+                                    <!-- <label for="flagged">flag</label> -->
+                                    <!-- <input type="checkbox" id="flagged" name="flagged" value="1"> -->
+                                </div>
+                                <div class="report bottom">
+                                    <div class="submit-button">
+                                        <input class = "button-1 text-style-4 button-coloring-2 marg-top-20" type="submit" value = "SUBMIT">
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <hr>
-                <form action="/newReport" method = "POST">
-                    <div class="home-symptoms-form">
-                        <div class="left">
-                            <h3>SYMPTOMS</h3>
-                            {% for symptom in symptoms_list %}
-                            <div class="symptoms-card">
-                                <h3>{{symptom.name}}</h3>
-                                <!-- add dynamic range slider connects to script.js-->
-                                    <div class="slidecontainer">
-                                        <label for="am-{{symptom.id}}">am: </label>
-                                        <span class="limit"></span>
-                                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="am-{{symptom.id}}">
-                                    </div>
-                                    
-                                    <div class="slidecontainer">
-                                        <label for="pm-{{symptom.id}}">pm: </label>
-                                        <span class="limit"></span>
-                                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange" name="pm-{{symptom.id}}">
-                                    </div>
-                            </div>
-                            {% endfor %}
-                            <div class="symptoms-add-new text-style-4">
-                                <a href="/createSymptom">Add Symptom</a>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <h3>NOTES</h3>
-                            <div class="notes-card">
-                                <textarea name="notes" id="" cols="60" rows="10"></textarea>
-                            </div>
-                            <!-- <label for="flagged">flag</label> -->
-                            <!-- <input type="checkbox" id="flagged" name="flagged" value="1"> -->
-                            <input class = "button-1 text-style-4 button-coloring-2" type="submit" value = "SUBMIT">
-                        </div>
-                    </div>
-                </form>
             </div>
+
         </div>
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>    
