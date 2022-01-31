@@ -20,5 +20,5 @@ def new_Symptom():
         'name': request.form['name']
     }
     symptom_in_bank = symptom_bank.SymptomBank.add_symptom(symptom_info)
-    return redirect('/createReport')
+    return redirect('/create/report')
 

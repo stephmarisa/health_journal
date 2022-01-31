@@ -48,6 +48,31 @@ a{
 
 
 /* Home Reports Dashboard */
+.home-report-container{
+    border-top:1px solid #d6d3ce;
+    padding-top: 10px;
+    display:flex;
+    justify-content: space-between;
+}
+.left-home{
+    flex:1;
+    padding-right: 10px;
+    text-align: center;
+}
+.right-home{
+    flex:2;
+    padding-left: 10px;
+    border-left: 1px solid #d6d3ce;
+}
+.home-number-block{
+    padding: 3px;
+    margin-bottom: 3px;
+    /* background-color: green; */
+    border-radius: 5px;
+}
+.color-block{
+    padding-bottom: 7px;
+}
 .report-cards-container{
     display:flex;
     flex-wrap: wrap;
@@ -58,9 +83,9 @@ a{
 } */
 .report-card{
     width: 25%; 
-    height: 180px;
+    height: 190px;
     margin: 10px;
-    padding: 20px;
+    padding: 15px 20px;
     /* border: 1px solid black; */
     background-color: #FFFDFA;
     border-radius: 8px;
@@ -74,15 +99,7 @@ a{
     transition: .2s ease;
     backface-visibility: hidden;
     /* border: 1px solid black; */
-    padding: 20px;
-}
-.middle {
-    transition: all 0.5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 45%;
-    left: 13%;
-    z-index: 2;
+    padding: 10px;
 }
 .report-card:hover .report-card-main-view{
     opacity: .2;
@@ -95,14 +112,29 @@ a{
     justify-content: center;
     align-items: center;
 }
-.edit-view-options a{
+/* card hidden view options*/
+.middle {
+    transition: all 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 35%;
+    left: 13%;
+    z-index: 2;
+}
+.edit-view-options a, .edit-view-options [type="submit"]{
+    border: none;
     background-color: #DD9B1B;
     border-radius: 5px;
     color: white;
-    padding: 10px 18px;
-    margin: 10px;
-    font-size: 12px;
+    padding: 5px 10px;
+    margin: 5px 5px 10px 5px;
+    font-size: 11px;
     text-align: center;
+    display: inline-block;
+}
+.edit-view-options [type="submit"]{
+    display: inline-block;
+    left: 50%;
 }
 
 
@@ -128,7 +160,7 @@ a{
     border-radius: 8px;
     background-color: #FFFDFA;
     filter: drop-shadow(0px 0px 3px rgb(80, 53, 0, 0.1));
-    height: 150px;
+    height: 180px;
     margin: 20px 0px;
     padding: 20px;
 }
@@ -136,7 +168,7 @@ a{
     background-color: #FFFDFA;
     filter: drop-shadow(0px 0px 3px rgb(80, 53, 0, 0.1));
     margin-top:20px;
-    height: 200px;
+    height: 300px;
     display:flex;
     border-radius: 8px;
     flex-direction: column;
@@ -174,10 +206,10 @@ a{
     background-color: #FFFDFA;
     border-radius: 8px;
     border:none;
-    padding: 50px 30px;
+    padding: 50px 90px;
     filter: drop-shadow(0px 0px 3px rgb(80, 53, 0, 0.1));
     margin-top:40px;
-    width: 100%;
+    width: 85%;
 }
 
 /* Overview Page Styling */

@@ -21,7 +21,7 @@
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 150px;
-    color: black;
+    color: #FFFDFA;
     animation: fadeIn linear 1.5s;
 }
 
@@ -41,6 +41,16 @@ a{
     padding:10px 25px 10px 25px;
     border-radius: 10px;
     border: none;
+}
+.button-coloring-1{
+    background-color:#FFFDFA;
+    transition: all 0.5s ease-out;
+    border: 1px solid #FFFDFA;
+}
+.button-coloring-1:hover{
+    background-color:#374056;
+    border: 1px solid #FFFDFA;
+    color: #FFFDFA;
 }
 .button-coloring-2{
     background-color: #B6D6D8;
@@ -155,4 +165,31 @@ green:
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
+}
+/* style daily numbers */
+.range-num-styles{
+    /* background-color: green; */
+    padding: 10px 10px;
+    text-align: center;
+    width: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #FFFDFA;
+}
+.range-num-styles-2{
+    /* background-color: green; */
+    text-align: center;
+    padding: 10px 10px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #FFFDFA;
+}
+#daily-number-view{
+    /* background-color: green; */
+    padding: 15px 20px;
+    color: #FFFDFA;
+    border-radius: 5px;
 }

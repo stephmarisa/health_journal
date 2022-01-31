@@ -23,14 +23,14 @@
                 </div>
                 <div class="nav-right text-style-2">
                     <a href="/trends">OVERVIEW</a>
-                    <a href="">PROFILE</a>
+                    <!-- <a href="/profile">PROFILE</a> -->
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
             <div class="home-body-dash">
                 <div class="home-header">
                     <div class="container">
-                        <div class="day text-style-3">My Reports</div>
+                        <div class="day text-style-3">{{this_user.first_name}}'s Reports</div>
                     </div>
                 </div> 
                 <!-- add in for loop to load all cards render in reverse-->
@@ -46,6 +46,9 @@
                                 <div class="edit-view-options">
                                     <a class = "text-style-4 view-button" href="/view/{{report.id}}">View</a>
                                     <a class = "text-style-4 edit-button" href="/edit/{{report.id}}">Edit</a>
+                                    <form class = "text-style-4" action="/destroy/{{report.id}}" method = "POST">
+                                        <input type="submit" value = "Delete" class = "text-style-4">
+                                    </form>
                                 </div>
                             </div>
                             <div class="report-card-main-view">
@@ -53,16 +56,28 @@
                                     <h3 class = "padd-down-10">Entry {{report.id}}</h3>
                                     <p class = "padd-down-10 text-style-6 ">{{report.created_at.strftime("%d-%b-%Y")}}</p>
                                 </div>
-                                <div class="morning-color-block text-style-4">
-                                    <p>Morning avg: {{report.morning_average()}}</p>
+                                <div class="home-report-container">
+                                    <div class="left-home">
+                                        <div class="color-block text-style-4">
+                                            <div class="home-number-block text-style-5">
+                                                {{report.overall_average()}}
+                                            </div>
+                                            <p class = "text-style-6">OVERALL</p>
+                                        </div>
+                                        <div class="color-block text-style-4">
+                                            <div class="home-number-block text-style-5" onload = "setBackgroundColor()">{{report.morning_average()}}</div>
+                                            <p class = "text-style-6">MORNING</p> 
+                                        </div>
+                                        <div class="color-block text-style-4">
+                                            <div class="home-number-block text-style-5">{{report.night_average()}}</div>
+                                            <p class = "text-style-6">EVENING</p>
+                                        </div>
+                                    </div>
+                                    <div class="right-home">
+                                        <p class="text-style-5 padd-down-10">NOTES</p>
+                                        <p class = "text-style-5 padd-down-10">{{report.notes[:40]}}...</p>
+                                    </div>
                                 </div>
-                                <div class="evening-color-block text-style-4">
-                                    <p>Evening avg: {{report.night_average()}}</p>
-                                </div>
-                                <div class="overall-color-block text-style-4 padd-down-20">
-                                    <p>Overall avg: {{report.overall_average()}}</p>
-                                </div>
-                                <p class = "text-style-5 padd-down-10">{{report.notes[:40]}}...</p>
                             </div>
                         </div>
                     {% endfor %}
@@ -70,5 +85,6 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>    
 </body>
 </html>

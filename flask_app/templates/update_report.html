@@ -24,7 +24,7 @@
                 </div>
                 <div class="nav-right text-style-2">
                     <a href="/trends">OVERVIEW</a>
-                    <a href="">PROFILE</a>
+                    <!-- <a href="">PROFILE</a> -->
                     <a href="/logout">LOGOUT</a>
                 </div>
             </div>
@@ -58,13 +58,13 @@
                                         <!-- add dynamic range slider -->
                                         <div class="slidecontainer padd-down-20">
                                             <label for="am-{{symptom.id}}">am: </label>
-                                            <span class="range-value">{{symptom.am}}</span>
+                                            <span class="range-value range-num-styles-2">{{symptom.am}}</span>
                                             <br>
                                             <input type="range" min="1" max="10" value={{symptom.am}} class="slider" id="myRange" name="am-{{symptom.id}}">
                                         </div>
                                         <div class="slidecontainer">
                                             <label for="pm-{{symptom.id}}">pm: </label>
-                                            <span class="range-value">{{symptom.pm}}</span>
+                                            <span class="range-value range-num-styles-2">{{symptom.pm}}</span>
                                             <br>
                                             <input type="range" min="1" max="10" value = {{symptom.pm}} class="slider" id="myRange" name="pm-{{symptom.id}}">
                                         </div>

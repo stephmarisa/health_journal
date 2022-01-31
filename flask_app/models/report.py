@@ -65,3 +65,10 @@ class Report:
     def update_report(cls, data):
         query = "UPDATE reports SET notes = %(notes)s, user_id = %(user_id)s, updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL(cls.db_name).query_db(query, data)
+
+    # Delete
+    @classmethod
+    def delete_report(cls, data):
+        query = "DELETE FROM reports WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        return results

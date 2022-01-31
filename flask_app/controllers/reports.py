@@ -85,3 +85,10 @@ def update_report(report_id):
         updated_daily_symptom = symptom.Symptom.update_daily_symptom(symptom_info)
 
     return redirect('/home')
+
+
+# Delete/Destroy Report
+@app.route('/destroy/<int:report_id>', methods = ["POST"])
+def destroy_painting(report_id):
+    deleted = report.Report.delete_report({'id': report_id})
+    return redirect('/home')

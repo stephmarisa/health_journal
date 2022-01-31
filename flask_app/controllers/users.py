@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 #pipenv install PyMySQL flask
+# pipenv install flask-bcrypt
 
 @app.route('/')
 def dashboard_page():
@@ -70,9 +71,10 @@ def logout():
 @app.route('/home')
 def home():
     data = {'user_id': session['user_id']}
+    this_user = user.User.get_by_id({'id': session['user_id']})
     reports_list = report.Report.get_all_reports_by_id(data)
     # reversed_reports_list = reverse_list(reports_list)
-    return render_template("home.html", reports_list = reports_list)
+    return render_template("home.html", reports_list = reports_list, this_user = this_user)
 
 # def reverse_list(some_list):
 #     reversed_list = []
@@ -98,7 +100,7 @@ def display_trends():
     evening_dataset = {}
     for this_report in reports_list:
         dateTimeObj = this_report.created_at
-        timestampStr = dateTimeObj.strftime("%d-%b-%Y %H:%M")
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y %H:%M:%S")
         # (%H:%M)
         overall_dataset[timestampStr] = this_report.overall_average()
         morning_dataset[timestampStr] = this_report.morning_average()
@@ -108,3 +110,8 @@ def display_trends():
     x1labels, y1labels, y2labels, y3labels  = list(overall_dataset.keys()), list(overall_dataset.values()), list(morning_dataset.values()), list(evening_dataset.values())
 
     return render_template("trends.html", x1labels = x1labels, y1labels = y1labels, y2labels = y2labels, y3labels = y3labels)
+
+
+@app.route('/profile')
+def display_profile():
+    return(render_template('show_profile.html'));
